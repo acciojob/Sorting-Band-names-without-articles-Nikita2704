@@ -1,12 +1,16 @@
 //your code here
 //your code here
-let touristSpots = ['The Virupaksha Temple', 'an Victoria Memorial', 'a xTajmahal'];
+let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+touristSpots.sort((a, b)=>{
+	const func = str => str.replace(/^(a|an|the)\s+/i, '');
+	const modA = func(a);
+	const modB = func(b);
+	return modA.localeCompare(modB);
+});
 
-function tri(name){
-	 return name.replace(/^(a |the |an )/i,'');
-  
- }
-
- let a= touristSpots.sort((a,b) => tri(a)>tri(b) ? 1 : -1 );
- console.log(a);
-
+const ul = document.getElementById('bands');
+for(const spot of touristSpots){
+	const li = document.createElement('li');
+	li.innerHTML = spot;
+	ul.appendChild(li);
+}
