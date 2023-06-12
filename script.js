@@ -1,20 +1,15 @@
-//your code here
-//your code here
-const bands = ['The Beatles', 'Led Zeppelin', 'Pink Floyd', 'Aerosmith'];
+const bandnames = ['The Beatles', 'Aerosmith', 'The Rolling Stones', 'Anthrax', 'The Who'];
 
-// Define the strip function to remove common words from band names
-function strip(word) {
-const regex = /^(a |the |an )/i;
-return word.replace(regex, '').trim();
+function strip(bandname){
+  return bandname.replace(/^(a |the |an )/i, '').trim();
 }
 
-// Sort the bands array using the strip function to ignore common words
-const sortedBands = bands.sort((a, b) => (strip(a) > strip(b)) ? 1 : -1);
+const sortedbands = bandnames.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
 
-// Update the DOM with the sorted band names
-const bandList = document.getElementById('bands');
-sortedBands.forEach(band => {
-const listItem = document.createElement('li');
-listItem.textContent = band;
-bandList.appendChild(listItem);
-});
+const bandlist = document.querySelector('#bands');
+
+for (let i = 0; i < sortedbands.length; i++) {
+  const li = document.createElement('li');
+  li.textContent = sortedbands[i];
+  bandlist.appendChild(li);
+}
