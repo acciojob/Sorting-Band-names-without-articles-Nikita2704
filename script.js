@@ -1,26 +1,27 @@
-const bandNames = ['The Beatles', 'Red Hot Chili Peppers', 'Metallica', 'Aerosmith', 'The Rolling Stones', 'Nirvana'];
 
-// Function to remove articles from the band names
-const removeArticles = (name) => {
-  // List of articles to be removed
-  const articles = ['the', 'a', 'an'];
 
-  // Convert the name to lowercase
-  const lowercaseName = name.toLowerCase();
+//your code here
 
-  // Check if the name starts with an article
-  for (let article of articles) {
-    if (lowercaseName.startsWith(article + ' ')) {
-      // Remove the article from the name
-      return name.substring(article.length + 1);
-    }
-  }
+let bandNames = ['The Beatles', 'Led Zeppelin', 'Metallica', 'Aerosmith', 'Pink Floyd'];
 
-  return name;
-};
+// Function to remove articles from band names
+function removeArticles(name) {
+  return name.replace(/^(a|an|the)\s+/i, '');
+}
 
-// Remove articles and sort the band names
-const sortedBandNames = bandNames.map(removeArticles).sort();
+// Sort the band names in lexicographic order without articles
+bandNames.sort((a, b) => removeArticles(a).localeCompare(removeArticles(b)));
 
-// Print the sorted band names
-console.log(sortedBandNames);
+// Create the ul element
+let ulElement = document.createElement('ul');
+ulElement.id = 'band';
+
+// Add the band names as list items to the ul element
+bandNames.forEach((name) => {
+  let liElement = document.createElement('li');
+  liElement.textContent = name;
+  ulElement.appendChild(liElement);
+});
+
+// Append the ul element to the body of the document
+document.body.appendChild(ulElement);
